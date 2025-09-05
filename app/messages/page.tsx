@@ -68,7 +68,7 @@ export default function MessagesPage() {
       // Group messages by conversation partner
       const conversationMap = new Map<string, Conversation>();
       
-      data?.forEach(message => {
+      (data as any)?.forEach((message: any) => {
         const otherUserId = message.sender_id === user.id ? message.receiver_id : message.sender_id;
         const otherUser = message.sender_id === user.id 
           ? message.profiles 

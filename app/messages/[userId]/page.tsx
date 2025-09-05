@@ -99,7 +99,7 @@ export default function MessagePage() {
         return;
       }
 
-      const formattedMessages = data?.map(msg => ({
+      const formattedMessages = (data as any)?.map((msg: any) => ({
         id: msg.id,
         sender_id: msg.sender_id,
         receiver_id: msg.receiver_id,
@@ -126,7 +126,7 @@ export default function MessagePage() {
 
     try {
       const sb = supabaseBrowser();
-      await sb
+      await (sb as any)
         .from('messages')
         .update({ is_read: true })
         .eq('sender_id', otherUserId)
@@ -144,7 +144,7 @@ export default function MessagePage() {
     setSending(true);
     try {
       const sb = supabaseBrowser();
-      const { data, error } = await sb
+      const { data, error } = await (sb as any)
         .from('messages')
         .insert({
           sender_id: user.id,

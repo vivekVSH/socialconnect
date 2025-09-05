@@ -42,9 +42,9 @@ export default function EditPostPage() {
         }
 
         setPost(data);
-        setContent(data.content || '');
-        setCategory(data.category || 'general');
-        setImageUrl(data.image_url);
+        setContent((data as any).content || '');
+        setCategory((data as any).category || 'general');
+        setImageUrl((data as any).image_url);
       } catch (err) {
         console.error('Error:', err);
         setError('Failed to load post.');
@@ -94,7 +94,7 @@ export default function EditPostPage() {
       setError('');
 
       const sb = supabaseBrowser();
-      const { error } = await sb
+      const { error } = await (sb as any)
         .from('posts')
         .update({
           content: content.trim(),

@@ -39,14 +39,14 @@ export default function SetupAdminPage() {
         return;
       }
 
-      if (profile.is_admin) {
+      if ((profile as any).is_admin) {
         setMessage('This user is already an admin');
         setLoading(false);
         return;
       }
 
       // Update the user to be an admin
-      const { error: updateError } = await sb
+      const { error: updateError } = await (sb as any)
         .from('profiles')
         .update({ is_admin: true })
         .eq('email', email.toLowerCase());
@@ -55,7 +55,7 @@ export default function SetupAdminPage() {
         throw updateError;
       }
 
-      setMessage(`Success! ${profile.username} (${profile.email}) is now an admin.`);
+      setMessage(`Success! ${(profile as any).username} (${(profile as any).email}) is now an admin.`);
       setEmail('');
       
       // If this is the current user, redirect to admin page
@@ -103,7 +103,7 @@ export default function SetupAdminPage() {
         throw new Error('Profile not found');
       }
 
-      if (currentProfile.is_admin) {
+      if ((currentProfile as any).is_admin) {
         setMessage('You are already an admin! Redirecting to admin dashboard...');
         setTimeout(() => {
           router.push('/admin');
@@ -112,9 +112,9 @@ export default function SetupAdminPage() {
       }
 
       // Update the user to be an admin
-      const { error: updateError } = await sb
+      const { error: updateError } = await (sb as any)
         .from('profiles')
-        .update({ 
+        .update({
           is_admin: true,
           updated_at: new Date().toISOString()
         })
