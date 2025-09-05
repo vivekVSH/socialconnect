@@ -1,0 +1,2 @@
+ERROR:  23503: insert or update on table "posts" violates foreign key constraint "posts_author_id_fkey"
+DETAIL:  Key (author_id)=(4b434188-94a1-4c89-bf85-74224a6cc00a) is not present in table "profiles".
